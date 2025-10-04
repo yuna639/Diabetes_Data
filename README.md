@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Diabetes Health Analytics Dashboard
 
 ## Project Overview
@@ -266,3 +267,6 @@ Lifestyle, age, and genetics strongly influence diabetes risk
 Data-driven insights support personalized interventions
 
 Dashboard delivers easy-to-interpret analytics for both technical and non-technical audiences
+=======
+Hi 
+>>>>>>> 47645bc82d06d4ce38481274c3906901d803ea74
