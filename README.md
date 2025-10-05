@@ -84,61 +84,100 @@ The project integrates **statistical analysis, interactive visualization, and ma
 
 I have used **linear regression** to model the relationship between a predictor variable and the binary outcome of being classified as **obese (1)** or **not obese (0)** based on BMI.
 
-![alt text](<Screenshot 2025-10-05 023445.png>)
 
-### 📊 Chart 1: **BMI vs BMI Obese**
-**Title:** *Linear Regression: bmi vs BMI Obese*  
-- **X-axis:** `bmi` (Body Mass Index)  
-- **Y-axis:** `bmi_category_Obese` (binary: 0 = not obese, 1 = obese)  
-- **Observations:**
-  - Two clear horizontal clusters at y = 0 and y = 1.
-  - The red regression line slopes upward, indicating a **positive correlation**: higher BMI values are associated with a higher likelihood of being obese.
-  - The shaded area around the line shows the confidence interval—how certain the model is about its predictions.
-  - A single black dot in the center might represent a mean or an outlier.
 
----
-![alt text](<Screenshot 2025-10-05 023558.png>)
-### 📊 Chart 2: **Waist-to-Hip Ratio vs BMI Obese**
-**Title:** *Linear Regression: waist_to_hip_ratio vs BMI Obese*  
-- **X-axis:** `waist_to_hip_ratio`  
-- **Y-axis:** `bmi_category_Obese`  
-- **Observations:**
-  - Similar binary clustering at y = 0 and y = 1.
-  - The regression line again slopes upward, suggesting that **higher waist-to-hip ratios** are linked to increased obesity likelihood.
-  - Waist-to-hip ratio is a known indicator of visceral fat, so this relationship makes biological sense.
+### 📊 Chart 1: **BMI vs BMI Category**
+
+**Title:** *Linear Regression: BMI vs BMI Category*
+
+* **X-axis:** `BMI` (Body Mass Index)
+* **Y-axis:** `bmi_category_code` (numeric code for BMI category: 0 = Normal, 1 = Overweight, 2 = Obese)
+* **Observations:**
+
+  * Three horizontal clusters corresponding to Normal, Overweight, and Obese.
+  * The red regression line slopes upward, indicating a **positive association**: higher BMI values correspond to higher BMI category codes.
+  * Continuous BMI values allow a clear trend across categories.
+  * The confidence interval around the line visualizes model certainty.
 
 ---
-![alt text](<Screenshot 2025-10-05 023702.png>)
-### 📊 Chart 3: **Triglycerides vs BMI Obese**
-**Title:** *Linear Regression: triglycerides vs BMI Obese*  
-- **X-axis:** `triglycerides` (a type of fat found in blood)  
-- **Y-axis:** `bmi_category_Obese`  
-- **Observations:**
-  - Binary clustering remains consistent.
-  - The regression line shows a **positive trend**, meaning higher triglyceride levels are associated with obesity.
-  - This supports the idea that metabolic markers like triglycerides are relevant in obesity risk.
+
+### 📊 Chart 2: **Waist-to-Hip Ratio vs BMI Category**
+
+**Title:** *Linear Regression: Waist-to-Hip Ratio vs BMI Category*
+
+* **X-axis:** `waist_to_hip_ratio`
+* **Y-axis:** `bmi_category_code`
+* **Observations:**
+
+  * Clustering across the three BMI categories is visible.
+  * The regression line slopes upward, showing that **higher waist-to-hip ratios** are associated with higher BMI categories.
+  * This aligns with clinical understanding that visceral fat (measured by waist-to-hip ratio) is a predictor of obesity.
 
 ---
-![alt text](<Screenshot 2025-10-05 023731.png>)
-### 📊 Chart 4: **Insulin Level vs BMI Obese**
-**Title:** *Linear Regression: insulin_level vs BMI Obese*  
-- **X-axis:** `insulin_level`  
-- **Y-axis:** `bmi_category_Obese`  
-- **Observations:**
-  - Again, binary outcome clusters.
-  - The regression line slopes upward, indicating that **higher insulin levels** correlate with obesity.
-  - This is consistent with insulin resistance being common in obese individuals.
+
+### 📊 Chart 3: **Triglycerides vs BMI Category**
+
+**Title:** *Linear Regression: Triglycerides vs BMI Category*
+
+* **X-axis:** `triglycerides` (blood fat levels)
+* **Y-axis:** `bmi_category_code`
+* **Observations:**
+
+  * The numeric encoding shows three discrete outcome levels, with higher triglycerides tending toward higher BMI categories.
+  * The regression line shows a **positive trend**, indicating that higher triglyceride levels are associated with higher BMI category codes.
+  * Supports the role of metabolic markers in obesity risk.
 
 ---
-![alt text](<Screenshot 2025-10-05 023627.png>)
-### 📊 Chart 5: **BMI Overweight vs BMI Obese**
-**Title:** *Linear Regression: bmi_category_Overweight vs BMI Obese*  
-- **X-axis:** `bmi_category_Overweight` (binary: 0 = not overweight, 1 = overweight)  
-- **Y-axis:** `bmi_category_Obese`  
-- **Observations:**
-  - Only **three data points**—very limited sample.
-  - The regression line slopes **downward**, suggesting a **negative correlation**: being overweight may inversely relate to being obese (which makes sense since they are mutually exclusive categories).
-  - This chart is more categorical than continuous, so linear regression may not be the best fit here.
+
+### 📊 Chart 4: **Insulin Level vs BMI Category**
+
+**Title:** *Linear Regression: Insulin Level vs BMI Category*
+
+* **X-axis:** `insulin_level`
+* **Y-axis:** `bmi_category_code`
+* **Observations:**
+
+  * Outcome clusters correspond to BMI categories.
+  * The regression line slopes upward, suggesting that **higher insulin levels** are linked to higher BMI categories.
+  * Consistent with insulin resistance being common in overweight and obese individuals.
+
+---
+
+### 📊 Chart 5: **BMI Overweight vs BMI Category**
+
+**Title:** *Linear Regression: BMI Overweight vs BMI Category*
+
+* **X-axis:** `bmi_category_code` or a binary derived from BMI category (e.g., 1 = Overweight, 0 = otherwise)
+* **Y-axis:** `bmi_category_code`
+* **Observations:**
+
+  * Very limited points if using a binary Overweight indicator.
+  * Regression line may slope downward slightly because Overweight and Obese are mutually exclusive in the binary encoding.
+  * This predictor is **categorical**, so linear regression is not ideal, and interpretation should be cautious.
+
+---
+
+### 🔍 Comparative Analysis
+
+| Chart | Predictor Variable   | Association with BMI Category | Type of Variable | Strength of Insight |
+| ----- | -------------------- | ----------------------------- | ---------------- | ------------------- |
+| 1     | BMI                  | Positive                      | Continuous       | Strong              |
+| 2     | Waist-to-Hip Ratio   | Positive                      | Continuous       | Strong              |
+| 3     | Triglycerides        | Positive                      | Continuous       | Moderate–Strong     |
+| 4     | Insulin Level        | Positive                      | Continuous       | Moderate–Strong     |
+| 5     | Overweight Indicator | Slight Negative / Weak        | Binary           | Weak / Limited      |
+
+---
+
+### 🧠 Key Takeaways
+
+* **Continuous predictors** like BMI, waist-to-hip ratio, triglycerides, and insulin levels show **clear positive trends** with BMI category codes.
+* **Binary or categorical predictors** (e.g., Overweight indicator) are less suitable for linear regression due to mutual exclusivity and limited data points.
+* Regression on numeric-coded BMI categories allows visualization of trends across all three groups (Normal → Overweight → Obese).
+* Confidence intervals help assess the reliability of predictions—narrower bands indicate stronger predictive relationships.
+* Linear regression provides a **general trend**, but for categorical outcomes, other models (logistic regression, ordinal regression) may provide more accurate predictions.
+
+
 
 ---
 
