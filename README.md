@@ -1,272 +1,519 @@
-<<<<<<< HEAD
-# Diabetes Health Analytics Dashboard
 
-## Project Overview
-This project is a **Data Analytics and AI-powered dashboard** built using Python to analyse health and lifestyle factors contributing to diabetes risk. The dashboard provides **interactive visualizations** to explore patterns, relationships, and predictive insights across a wide range of features including demographics, lifestyle behaviors, medical history, and biometric indicators.
+# 🩺 Diabetes Health Analytics Dashboard
 
-The main purpose of this dashboard is to help healthcare professionals, researchers, and policymakers understand key risk factors, identify high-risk populations, and make **data-driven decisions** to improve patient outcomes.
+## 📘 Overview
 
----
+The **Diabetes Health Analytics Dashboard** is a **Python-powered AI and data analytics tool** designed to explore, visualize, and model the relationships between health, lifestyle, and diabetes risk factors.
 
-## Dataset
-- **Source:** `diabetes_final_standardized.csv`
-- **Rows:** 100,001  
-- **Columns:** 49  
-- **Key Features:**
-  - Continuous: `age`, `alcohol_consumption_per_week`, `physical_activity_minutes_per_week`, `diet_score`, `sleep_hours_per_day`, `screen_time_hours_per_day`
-  - Categorical: `gender`, `bmi_category`, `bp_category`, `family_history_diabetes`, `hypertension_history`, `cardiovascular_history`, `employment_status`, `smoking_status`
-- **Preprocessing:** Standardization applied to continuous features; categorical variables one-hot encoded.
+The project integrates **statistical analysis, interactive visualization, and machine learning** to assist:
+
+* **Healthcare professionals** in identifying high-risk individuals
+* **Researchers** in exploring patterns in population health data
+* **Policy makers** in designing targeted interventions
 
 ---
 
-## Business Requirements
-1. **Identify high-risk individuals** for diabetes based on lifestyle, BMI, blood pressure, and family history.  
-2. **Provide actionable insights** through visualizations for health interventions.  
-3. **Interactive dashboard** to allow healthcare professionals to filter by demographics, BMI, blood pressure, and lifestyle factors.  
-4. **Ethical Data Handling:** Ensure data anonymization and privacy in compliance with GDPR.  
+## 📂 Dataset
+
+| Attribute         | Details                                                                                 |
+| ----------------- | --------------------------------------------------------------------------------------- |
+| **File Name**     | `diabetes_final_standardized.csv`                                                       |
+| **Rows**          | 100,001                                                                                 |
+| **Columns**       | 49                                                                                      |
+| **Source**        | https://www.kaggle.com/datasets/mohankrishnathalla/diabetes-health-indicators-datasetdataset                                                               |
+| **Preprocessing** | Standardization for continuous variables and one-hot encoding for categorical variables |
+
+### Key Features
+
+* **Continuous Variables:**
+  `age`, `alcohol_consumption_per_week`, `physical_activity_minutes_per_week`, `diet_score`, `sleep_hours_per_day`, `screen_time_hours_per_day`
+* **Categorical Variables:**
+  `gender`, `bmi_category`, `bp_category`, `family_history_diabetes`, `hypertension_history`, `cardiovascular_history`, `employment_status`, `smoking_status`
 
 ---
 
-## Hypotheses
-1. **Hypothesis 1:** Higher BMI and sedentary behavior are positively correlated with diabetes risk.  
-2. **Hypothesis 2:** Individuals with a family history of diabetes have higher risk regardless of lifestyle.  
-3. **Hypothesis 3:** High alcohol consumption and low diet scores increase the likelihood of cardiovascular complications.  
-4. **Hypothesis 4:** Age is a significant predictor of hypertension and diabetes risk.  
+## 🎯 Business Requirements
 
-**Validation of Hypotheses:**  
-- Correlation heatmaps (Spearman) to test monotonic relationships.  
-- Pairplots and regression plots to visualize interactions between continuous variables and target outcomes.  
-- Parallel coordinates plots to detect clusters of high-risk individuals.  
-- Linear regression and predictive modeling for hypothesis confirmation.
+1. Identify **high-risk individuals** for diabetes based on BMI, blood pressure, and lifestyle factors.
+2. Deliver **actionable insights** through visual analytics for early intervention.
+3. Provide an **interactive, filterable dashboard** for healthcare professionals.
+4. Maintain **ethical data handling**, ensuring anonymization and GDPR compliance.
 
 ---
 
-## Use Cases
-- **Healthcare Professionals:** Identify patients at high risk of diabetes for preventive interventions.  
-- **Researchers:** Study the effect of lifestyle factors on diabetes and cardiovascular health.  
-- **Policy Makers:** Design targeted health programs for at-risk populations.  
-- **Patients:** Understand personal risk factors and lifestyle adjustments.
+## 💡 Hypotheses
+
+| #  | Hypothesis                                                            | Validation Methods                          |
+| -- | --------------------------------------------------------------------- | ------------------------------------------- |
+| H1 | Higher BMI and sedentary behavior are correlated with diabetes risk.  | Correlation Heatmap, Regression Analysis    |
+| H2 | Family history is an independent risk factor regardless of lifestyle. | Group-wise comparison, Parallel Coordinates |
+| H3 | High alcohol consumption and poor diet increase cardiovascular risk.  | Regression plots, Correlation Analysis      |
+| H4 | Age significantly predicts hypertension and diabetes risk.            | Spearman correlation, Linear Regression     |
 
 ---
 
-## User Stories
-1. As a **doctor**, I want to filter patients by BMI and activity level so I can prioritize preventive care.  
-2. As a **researcher**, I want to visualize correlations between diet, exercise, and blood pressure to publish findings.  
-3. As a **patient**, I want to see my relative risk of diabetes to improve my lifestyle choices.  
+## 🧠 Methodology
+
+### **Input**
+
+* Raw dataset (`diabetes_final_standardized.csv`)
+* Variables: demographic, lifestyle, biometric, and family medical history data
+
+### **Process**
+
+1. **Data Preprocessing**
+
+   * Handle missing values
+   * Standardize continuous variables
+   * One-hot encode categorical features
+
+2. **Exploratory Data Analysis (EDA)**
+
+   * Visual correlation, clustering, and pattern recognition
+
+3. **Modeling**
+
+Mean Squared Error (MSE)
+𝑀
+𝑆
+𝐸
+=
+1
+𝑛
+∑
+𝑖
+=
+1
+𝑛
+(
+𝑦
+𝑖
+−
+𝑦
+^
+𝑖
+)
+2
+MSE=
+n
+1
+	​
+
+i=1
+∑
+n
+	​
+
+(y
+i
+	​
+
+−
+y
+^
+	​
+
+i
+	​
+
+)
+2
+
+Where:
+
+𝑦
+𝑖
+y
+i
+	​
+
+ = actual (true) target value
+
+𝑦
+^
+𝑖
+y
+^
+	​
+
+i
+	​
+
+ = predicted value
+
+𝑛
+n = number of samples
+
+👉 MSE measures the average squared difference between predicted and actual values.
+Lower MSE → better model performance.
+
+
+
+Coefficient of Determination (R²)
+𝑅
+2
+=
+1
+−
+∑
+𝑖
+=
+1
+𝑛
+(
+𝑦
+𝑖
+−
+𝑦
+^
+𝑖
+)
+2
+∑
+𝑖
+=
+1
+𝑛
+(
+𝑦
+𝑖
+−
+𝑦
+ˉ
+)
+2
+R
+2
+=1−
+∑
+i=1
+n
+	​
+
+(y
+i
+	​
+
+−
+y
+ˉ
+	​
+
+)
+2
+∑
+i=1
+n
+	​
+
+(y
+i
+	​
+
+−
+y
+^
+	​
+
+i
+	​
+
+)
+2
+	​
+
+
+Where:
+
+𝑦
+𝑖
+y
+i
+	​
+
+ = actual target value
+
+𝑦
+^
+𝑖
+y
+^
+	​
+
+i
+	​
+
+ = predicted value
+
+𝑦
+ˉ
+y
+ˉ
+	​
+
+ = mean of actual target values
+
+👉 R² measures how much of the variance in the target variable is explained by the model.
+
+𝑅
+2
+=
+1
+R
+2
+=1: perfect prediction
+
+𝑅
+2
+=
+0
+R
+2
+=0: model explains none of the variance
+
+𝑅
+2
+<
+0
+R
+2
+<0: model performs worse than a horizontal mean line
+   * Linear Regression to predict BMI (proxy for diabetes risk)
+   * Evaluation using MSE and R²
+
+![alt text](image-2.png)
+
+![alt text](image-1.png)
+
+
+4. **Visualization**
+
+   * Interactive dashboards for filtering and insight generation
+
+### **Output**
+
+* **Interactive visual dashboard**
+* **Validated statistical models**
+* **Risk insights and correlations**
 
 ---
 
-## Visualizations
+## 📊 Visualizations
 
-### 1. Correlation Heatmap with Hierarchical Clustering
-- Shows relationships between all features.  
-- Highlights key predictors like `BMI`, `age`, and `family_history_diabetes`.  
-- Tool: Seaborn `clustermap`.
+| Visualization                          | Description                                                           | Tool                          |
+| -------------------------------------- | --------------------------------------------------------------------- | ----------------------------- |
+| **Correlation Heatmap (Hierarchical)** | Identifies relationships between all variables and key predictors     | Seaborn `clustermap`          |
+| **Pairwise Relationships**             | Displays scatterplots of continuous features, colored by BMI category | Seaborn `pairplot`            |
+| **UMAP Dimensionality Reduction**      | Reduces 49D data into 2D for cluster detection                        | UMAP + Plotly                 |
+| **Parallel Coordinates Plot**          | Visualizes patterns across multiple risk factors                      | Pandas `parallel_coordinates` |
+| **Regression Analysis**                | Predicts BMI from activity, diet, and age                             | Seaborn `regplot` / `lmplot`  |
 
-### 2. Pairwise Relationships (Subset)
-- Scatterplot matrix for selected continuous variables, colored by `bmi_category`.  
-- Tool: Seaborn `pairplot`.
+## 🧮 Statistical Foundations (LO1)
 
-### 3. Dimensionality Reduction (UMAP)
-- Reduces 49-dimensional data to 2D for pattern discovery.  
-- Points colored by BMI category, size scaled by activity levels.  
-- Tool: UMAP + Plotly.
-
-### 4. Parallel Coordinates Plot
-- Visualizes high-dimensional patterns of individual patients.  
-- Highlights clusters of high-risk BMI categories.  
-- Tool: Pandas `parallel_coordinates`.
-
-### 5. Linear Regression
-- Simple regression of key features (`age`, `physical_activity`, `diet_score`) on BMI.  
-- Tool: Seaborn `lmplot` or `regplot`.  
+* **Descriptive Statistics Section:** Include Markdown examples or screenshots in the README (mean, median, mode, variance, std dev, percentiles).
+* **Probability Basics:** Brief explanation of probability concepts (independence, conditional probability, Bayes theorem) as part of “Methodology.”
+* **Hypothesis Testing:** Add a short section showing an example t-test or chi-square test with interpretation.
+* **Distributions:** Visualize a normal distribution or similar to interpret variable behavior.
 
 ---
 
-## Model and Evaluation
-- **Model:** Linear Regression for predicting BMI as a proxy for diabetes risk.  
-- **Evaluation Metrics:**
-  - Mean Squared Error (MSE)  
-  - R² Score  
-- **Findings:** High correlation between age, sedentary lifestyle, and BMI; validates H1 and H4.  
+## 🐍 Python and Reproducibility (LO2)
+
+
+* **Code Quality & Optimization:** Mention vectorization, modular function design, and use of docstrings/comments.
+* **Reproducibility:** Include a note that you’ve used a `requirements.txt` or `pyproject.toml` file and fixed random seeds.
 
 ---
 
-## Validation and Testing
-1. Checked for missing data and handled anomalies.  
-2. Used Spearman correlation to validate monotonic relationships.  
-3. Applied regression and clustering methods for pattern confirmation.  
-4. Tested visualizations with sampled subsets (n=2,000) for performance on the dashboard.  
+## 🧩 Methodology & Design (LO3 + LO7)
+
+* **Problem Definition:** Explicitly state the project’s success metrics (e.g., “predict BMI within ±5% MSE”).
+* **Design Choices:** Add a short rationale for why Linear Regression, UMAP, and visualization methods were chosen.
+* **Critical Evaluation:** Reflect on model limitations, dataset biases, or computational constraints.
 
 ---
 
-## Technical Stack
-- **Python Libraries:** Pandas, NumPy, Seaborn, Matplotlib, Plotly, Scikit-learn, UMAP-learn  
-- **Dashboard Framework:** Power BI (interactive, responsive, user-friendly)  
-- **Version Control:** Git, with clear commit history documenting all improvements and feature additions.
+## 🤖 AI Integration (LO4)
+
+* **AI Assistance Evidence:** Mention that AI tools (e.g., Copilot, ChatGPT) supported code or summary generation, with examples if possible.
+* **AI-Generated Narrative:** Note that part of the insight summary or dashboard narrative is AI-assisted.
+* **Critical Review of AI Outputs:** Reflect briefly on how AI suggestions were evaluated or adjusted.
 
 ---
 
-## Development Roadmap
-- Extend predictive modeling to classification (diabetes risk).  
-- Incorporate time-series data if available for longitudinal health tracking.  
-- Add AI-driven personalized recommendations for patients.  
+## 🧱 Data Management & Pipeline (LO5)
+
+* **Data Sources Section:** Document data origin, licensing, and formats explicitly.
+* **ETL Pipeline Overview:** Add a small diagram or short paragraph describing collection → cleaning → processing → storage.
+* **Versioned Data Folders:** Note structure like `data/raw`, `data/processed/v1.0/`.
+* **Storage Decisions:** Explain rationale (e.g., CSV chosen for portability).
 
 ---
 
-## Ethical Considerations
-- Anonymized dataset to ensure patient privacy.  
-- Compliance with GDPR and data governance best practices.  
-- Highlighted potential biases in BMI-based predictions; users advised to combine with clinical assessment.
+## ⚖️ Ethics, Privacy, and Governance (LO6)
+
+*(Partially covered; expand slightly)*
+
+* Discussion of **algorithmic fairness** and **bias mitigation** in predictions.
+* Explicit mention of **privacy safeguards** (no PII, consent assumptions).
+* Mention of **legal/social impact** beyond GDPR (e.g., potential for misinterpretation of BMI as sole risk marker).
 
 ---
 
-## Evaluation & Testing
-- Visual validation of all plots for clarity and correctness.  
-- Linear regression and correlation metrics confirm predictive relevance.  
-- User testing with simulated filters and selections in the dashboard.  
-- Stress-testing with large dataset to ensure responsiveness.  
+## 🧭 Communication & Storytelling (LO8)
+
+* Mention that both **technical (metrics, plots)** and **plain-language summaries** are provided in the app or README.
+* Add a note that **each visualization includes a short caption/insight takeaway** (e.g., “Higher BMI correlates with lower activity”).
+* Confirm **clear labeling, legends, and tooltips** in dashboard and notebook figures.
 
 ---
 
-## References
-1. Pandas documentation: https://pandas.pydata.org  
-2. Seaborn documentation: https://seaborn.pydata.org  
-3. Plotly documentation: https://plotly.com/python/  
-4. UMAP-learn: https://umap-learn.readthedocs.io/en/latest/
+## 🌐 Domain Context & AI Relevance (LO9)
+
+* **Domain Application:** Explicitly state how this model supports healthcare operations or population health management.
+* **AI Solution Impact:** Explain how analytics/AI can be scaled (e.g., national screening programs, predictive triage).
 
 ---
 
-## Conclusion
-This project demonstrates a **full-fledged data analytics solution for healthcare**. The dashboard combines **interactive visualizations, hypothesis testing, regression modeling, and dimensionality reduction** to provide insights into diabetes risk. It adheres to **professional UX principles, data governance, and reproducible coding practices**, making it suitable for both technical and non-technical stakeholders.
+## 🔁 Project Lifecycle & Reflection (LO10–LO11)
 
-Diabetes Health Analytics Report
-Non-Technical Summary
 
-This project investigates the factors that contribute to diabetes risk using a comprehensive dataset of 100,001 anonymized individuals. Key features include age, gender, BMI, blood pressure, lifestyle habits such as alcohol consumption, diet quality, physical activity, sleep patterns, and family medical history.
+* **Implementation & Maintenance Plan:** Expand roadmap to include update frequency, retraining schedule, and evaluation checkpoints.
+* **Reflection Section:** Summarize challenges faced (data quality, computational load) and future improvements.
+* **Experimentation/Adaptation:** Mention exploration of alternative tools (e.g., Streamlit, Power BI, Dash comparison).
+* **Professional Growth:** Note key learning outcomes or next-skill targets.
 
-The primary goal was to identify patterns and correlations between these features and health outcomes, particularly BMI and blood pressure, which are strong indicators of diabetes and cardiovascular risk. Using an interactive dashboard, stakeholders can explore trends, filter by demographics, and visualize relationships between lifestyle habits and health indicators.
+---
 
-Key findings include:
+## 🧱 Power BI / Dashboard UX (LO39–047)
 
-BMI and Lifestyle: Individuals with lower physical activity levels and higher screen time tend to have higher BMI values, increasing their diabetes risk.
+*(You mentioned Power BI, but the matrix expects Streamlit-style implementation — add only if applicable)*
 
-Diet and Alcohol Consumption: Poor diet scores combined with higher alcohol intake correlate with increased cardiovascular risk.
+* State management (`st.session_state`), `.streamlit/config.toml`, responsive layout, accessibility compliance, and navigation structure.
 
-Family History: A positive family history of diabetes significantly raises individual risk, irrespective of lifestyle factors.
+---
 
-Age Factor: Older adults are more likely to have hypertension and elevated BMI, confirming age as a major risk predictor.
+## 🧪 Testing, QA, and Deployment (LO63–071)
 
-The dashboard allows healthcare professionals, patients, and policymakers to easily identify high-risk groups, enabling targeted interventions and preventive strategies. For example, a patient with high BMI, low activity, and poor diet can receive personalized recommendations to reduce diabetes risk.
+* **Data Validation Tests:** Describe schema checks, duplicates, or range validations.
+* **Model Validation:** Mention train/validation/test split strategy.
+* **Performance Testing:** Note that large dataset stress-testing was performed (already partly mentioned).
+* **Deployment Instructions:** Include explicit “Run Instructions” section with environment setup and how to launch notebook/dashboard.
+* **Hosting:** If deployed, add Streamlit or Power BI public link and screenshot.
 
-In summary, the analysis demonstrates that lifestyle modification, early intervention, and family history awareness are key levers in reducing diabetes and cardiovascular risk. The visualizations and models provide clear, actionable insights for decision-making.
+---
 
-Technical Summary
+## 💼 Business Value (LO85–086)
 
-The project employed Python-based data analysis and AI-assisted visualization to explore correlations, identify risk factors, and predict BMI as a proxy for diabetes susceptibility. The dataset contained 49 features, including continuous variables (age, activity minutes, diet score, sleep hours) and categorical variables (BMI category, blood pressure, smoking status).
+* **Traceability Table:** Brief mapping of each business requirement to corresponding visualization or metric.
+* **Recommendations Section:** List 3–5 data-driven, actionable recommendations derived from the findings.
 
-Methodology:
+---
 
-Data Preprocessing: Standardized continuous variables, one-hot encoded categorical features, handled missing values, and performed exploratory data analysis (EDA).
+## 🪞 Optional (Quality & Version Control)
 
-Visual Analytics:
+* **Repository Hygiene:** Mention atomic commits, feature branches, and versioned data folders under `data/processed/vX.Y/`.
+* **Clean Code Statement:** Confirm modularity, docstrings, and directory structure clarity.
 
-Correlation Heatmap: Spearman correlation identified strong relationships between BMI, age, activity, and family history.
+---
 
-Pairplots & Regression Plots: Visualized interactions between key continuous variables and outcomes.
+### ✅ Summary of Additions Needed
 
-Parallel Coordinates Plot: Revealed multidimensional patterns among high-risk individuals.
+You should **add or expand** the following sections to make your README fully aligned with the matrix:
 
-UMAP Dimensionality Reduction: Reduced 49-dimensional data to 2D for pattern discovery and clustering.
+| Category                    | New Section/Addition                               |
+| --------------------------- | -------------------------------------------------- |
+| Statistical Foundations     | Descriptive stats, probability, hypothesis testing |
+| Reproducibility             | requirements.txt, seeds                            |
+| Design Choices & Evaluation | Model justification + limitations                  |
+| AI Integration              | Use and evaluation of AI tools                     |
+| Data Pipeline               | Source, ETL, versioning                            |
+| Ethics & Fairness           | Bias mitigation + social impact                    |
+| Communication               | Insight captions + dual audience                   |
+| Reflection & Growth         | Lessons learned, next steps                        |
+| Business Value              | Recommendations + traceability table               |
+| Testing & Deployment        | Validation, environment setup, hosting details     |
 
-Predictive Modeling: Linear regression was applied to predict BMI from key variables (age, activity, diet score). Model evaluation yielded:
+## 📈 Model and Evaluation
 
-R²: 0.68, indicating that the model explains a significant portion of BMI variability.
+| Metric                       | Description                                                   | Result |
+| ---------------------------- | ------------------------------------------------------------- | ------ |
+| **Model**                    | Linear Regression (BMI as proxy for diabetes risk)            | ✅      |
+| **Mean Squared Error (MSE)** | Measures prediction error                                     | Low    |
+| **R² Score**                 | Explained variance                                            | 0.68   |
+| **Findings**                 | Age, physical inactivity, and poor diet are strong predictors | ✔️     |
 
-MSE: Low enough to confirm predictive relevance for risk assessment.
+---
 
-Validation & Testing: Random sampling and visualization ensured robustness, while correlations and regression plots confirmed hypotheses regarding risk factors.
+## 🧪 Validation & Testing
 
-Key Technical Outcomes:
+* Checked and imputed missing data
+* Verified monotonic relationships via Spearman correlation
+* Regression and clustering used for pattern detection
+* Tested dashboard performance with 2,000 sample subsets
+* Conducted usability testing for clarity and interactivity
 
-BMI and physical activity are inversely related, while screen time and alcohol consumption positively correlate with BMI.
+---
 
-Family history remains the strongest categorical predictor of elevated BMI and diabetes risk.
+## ⚙️ Technical Stack
 
-Age demonstrates a monotonic relationship with hypertension and BMI, validated via Spearman correlation.
+| Category                | Tools                                                                |
+| ----------------------- | -------------------------------------------------------------------- |
+| **Languages**           | Python                                                               |
+| **Libraries**           | Pandas, NumPy, Seaborn, Matplotlib, Plotly, Scikit-learn, UMAP-learn |
+| **Dashboard Framework** | Power BI                                                             |
+| **Version Control**     | Git & GitHub                                                         |
 
-Dashboard visualizations allow dynamic exploration of the data, including filters for demographics, BMI category, blood pressure, and lifestyle habits.
+---
 
-Conclusion:
+## 🚀 Development Roadmap
 
-The analysis validates the initial hypotheses, confirming that lifestyle factors, age, and family history significantly influence diabetes and cardiovascular risk. The combination of interactive visualizations, linear regression, and dimensionality reduction provides a robust and actionable framework for healthcare professionals and policy makers to design targeted interventions. This project showcases how data-driven insights can effectively translate into real-world health strategies while remaining accessible to both technical and non-technical audiences.
-Executive Summary Infographic Concept – Diabetes Health Analytics
-Title:
+* [ ] Extend modeling to classification (diabetes risk prediction)
+* [ ] Integrate time-series data for longitudinal studies
+* [ ] Add AI-powered personalized health recommendations
 
-“Understanding Diabetes Risk: Insights from Lifestyle, Genetics, and Age”
+---
 
-Section 1: Key Dataset Overview
+## 🧭 Ethical Considerations
 
-Sample Size: 100,001 individuals
+* Dataset fully **anonymized**
+* **GDPR-compliant** data handling
+* Awareness of **biases in BMI-based risk assessments**
+* Recommendations are **non-clinical** and **supplement professional advice**
 
-Features: Age, Gender, BMI, Blood Pressure, Physical Activity, Diet Score, Sleep, Screen Time, Family History
+---
 
-Data Type: Mixed (Continuous & Categorical)
-Visual Suggestion: Simple icons with numbers (e.g., silhouette for people, scales for BMI, heart for BP, apple for diet)
+## 👩‍⚕️ Use Cases
 
-Section 2: Risk Factor Highlights
+| Stakeholder       | Goal                                                      |
+| ----------------- | --------------------------------------------------------- |
+| **Doctors**       | Identify and monitor high-risk patients                   |
+| **Researchers**   | Study relationships between health behaviors and outcomes |
+| **Policy Makers** | Design targeted public health interventions               |
+| **Patients**      | Understand and manage personal risk factors               |
 
-Visual: Color-coded bar charts or pictograms
+---
 
-BMI vs Physical Activity: Inverse correlation → Low activity → Higher BMI
+## 🧩 User Stories
 
-Screen Time & Alcohol: Positive correlation → Higher risk
+1. As a **doctor**, I can filter patients by BMI and activity level to plan preventive care.
+2. As a **researcher**, I can analyze correlations between diet, exercise, and blood pressure.
+3. As a **patient**, I can visualize my diabetes risk based on my lifestyle habits.
 
-Family History: Strong predictor of diabetes → Icon of family tree with risk highlight
+---
 
-Age Factor: Older adults → Higher BP & BMI
+## 📚 References
 
-Section 3: Predictive Insights
+1. [Pandas Documentation](https://pandas.pydata.org)
+2. [Seaborn Documentation](https://seaborn.pydata.org)
+3. [Plotly Python Graphing Library](https://plotly.com/python/)
+4. [UMAP-learn Documentation](https://umap-learn.readthedocs.io/en/latest/)
 
-Visual: Simplified regression plot / scatter plot with trendline
+---
 
-BMI predicted by age, activity, diet, and family history
+## 🏁 Conclusion
 
-Model explains 68% of BMI variation (R² = 0.68)
+The **Diabetes Health Analytics Dashboard** demonstrates how **data analytics and AI** can empower healthcare decision-making.
+Through **interactive dashboards**, **statistical validation**, and **predictive modeling**, this project provides actionable insights into diabetes and cardiovascular risk factors.
 
-Regression shows actionable insights for interventions
-
-Section 4: Dashboard Features
-
-Visual: Mini screenshots or layout mockup
-
-Interactive filters by BMI category, BP, lifestyle habits
-
-Dynamic correlation heatmaps & regression plots
-
-Enables targeted recommendations for high-risk individuals
-
-Section 5: Business Recommendations
-
-Icons + short text boxes
-
-Encourage physical activity → Reduce BMI
-
-Improve diet quality → Reduce cardiovascular risk
-
-Screen time management → Lifestyle intervention
-
-Family history awareness → Preventive programs
-
-Section 6: Conclusion
-
-Visual: Summary box / key takeaway banner
-
-Lifestyle, age, and genetics strongly influence diabetes risk
-
-Data-driven insights support personalized interventions
-
-Dashboard delivers easy-to-interpret analytics for both technical and non-technical audiences
-=======
-Hi 
->>>>>>> 47645bc82d06d4ce38481274c3906901d803ea74
+By combining **ethical data governance**, **transparent visualization**, and **user-focused design**, it serves as a foundation for future **AI-driven health analytics platforms**.
